@@ -200,7 +200,7 @@ func HandleRequest(ctx context.Context) (events.APIGatewayProxyResponse, error) 
 
 	var downloadUrl, fileName string
 	for _, item := range apiResp.Data {
-		if strings.Contains(item.Name, "buridge_dy_live_fans_daily_data") {
+		if strings.Contains(item.Name, "buridge_dy_live_product_daily_data") {
 			downloadUrl = item.URL
 			fileName = item.Name
 			break
@@ -224,7 +224,7 @@ func HandleRequest(ctx context.Context) (events.APIGatewayProxyResponse, error) 
 			StatusCode: 500,
 		}, nil
 	}
-	err = convertAndUploadToMongoDB(filePath, clientMongo, "NewRank", "live_fans_daily")
+	err = convertAndUploadToMongoDB(filePath, clientMongo, "NewRank", "live_product_daily")
 
 	if err != nil {
 		return events.APIGatewayProxyResponse{
